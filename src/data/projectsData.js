@@ -8,7 +8,7 @@ export const projectsData = [
     tags: ["React", "Node.js", "MongoDB", "Socket.io", "Express"],
     image:
       "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    link: "https://github.com/yourusername/chat-app",
+    link: "https://github.com/Surya-barre/ChattingApp",
   },
   {
     id: 2,
@@ -39,5 +39,5 @@ export const projectsData = [
     image:
       "https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     link: "https://github.com/yourusername/weather-dashboard",
-  }
+  },
 ];

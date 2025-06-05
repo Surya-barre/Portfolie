@@ -31,7 +31,7 @@ const Hero = () => {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
               <motion.a
-                href="https://linkedin.com/in/surya18-developer"
+                href="https://linkedin.com/in/barresurya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
@@ -41,7 +41,7 @@ const Hero = () => {
                 <FiLinkedin className="mr-2" /> LinkedIn
               </motion.a>
               <motion.a
-                href="https://leetcode.com/BarreSuryaNaidu"
+                href="https://leetcode.com/BarreSurya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-secondary"
@@ -51,7 +51,7 @@ const Hero = () => {
                 <FiCode className="mr-2" /> LeetCode
               </motion.a>
               <motion.a
-                href="/MainResume.pdf"
+                href="/SuryaNarayana.pdf"
                 className="btn btn-secondary"
                 download
                 whileHover={{ scale: 1.05 }}
