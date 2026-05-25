@@ -24,18 +24,53 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // In a real application, you would handle form submission here
+  //   console.log('Form submitted:', formData);
+  //   // Reset form after submission
+  //   setFormData({
+  //     name: '',
+  //     email: '',
+  //     subject: '',
+  //     message: ''
+  //   });
+  //   alert('Thank you for your message! I will get back to you soon.');
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, you would handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-    alert('Thank you for your message! I will get back to you soon.');
+
+    try {
+      const response = await fetch("http://localhost:8080/contact", {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          fullName: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      const result = await response.text();
+
+      alert("your data Successfully Submitted",result);
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+
+      alert("Failed to send message");
+    }
   };
 
   const containerVariants = {
