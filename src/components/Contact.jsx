@@ -1,26 +1,33 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { FiMail, FiMapPin, FiPhone, FiLinkedin, FiGithub, FiCode } from 'react-icons/fi';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiLinkedin,
+  FiGithub,
+  FiCode,
+} from "react-icons/fi";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
-  
+
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -37,61 +44,61 @@ const Contact = () => {
   //   });
   //   alert('Thank you for your message! I will get back to you soon.');
   // };
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await fetch(
-      "https://portfoliobackend-production-f973.up.railway.app/contact",
-      {
-        method: "POST",
+    try {
+      const response = await fetch(
+        "https://portfoliobackend-production-f973.up.railway.app/contact",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            fullName: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          }),
         },
+      );
 
-        body: JSON.stringify({
-          fullName: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
-      },
-    );
+      const result = await response.text();
 
-    const result = await response.text();
+      alert("your data Successfully Submitted", result);
 
-    alert("Your data submitted successfully");
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
 
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-  } catch (error) {
-    console.error(error);
-
-    alert("Failed to send message");
-  }
-};
+      alert("Failed to send message");
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
+      opacity: 1,
+    },
   };
 
   return (
