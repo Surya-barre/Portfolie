@@ -37,11 +37,13 @@ const Contact = () => {
   //   });
   //   alert('Thank you for your message! I will get back to you soon.');
   // };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:8080/contact", {
+  try {
+    const response = await fetch(
+      "https://portfoliobackend-production-f973.up.railway.app/contact",
+      {
         method: "POST",
 
         headers: {
@@ -54,24 +56,25 @@ const Contact = () => {
           subject: formData.subject,
           message: formData.message,
         }),
-      });
+      },
+    );
 
-      const result = await response.text();
+    const result = await response.text();
 
-      alert("your data Successfully Submitted",result);
+    alert("Your data submitted successfully");
 
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error(error);
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error(error);
 
-      alert("Failed to send message");
-    }
-  };
+    alert("Failed to send message");
+  }
+};
 
   const containerVariants = {
     hidden: { opacity: 0 },
